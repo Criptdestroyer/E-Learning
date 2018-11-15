@@ -23,16 +23,20 @@
                                 if(!isset($_SESSION["user"])){
                                 ?>
                                 <ul class="flex justify-content-center align-items-center py-2 pt-md-0">
-                                <li><a href="../login-register/register.php">Register</a></li>
-                                    <li><a href="../login-register/login.php">Login</a></li>
+                                <li><a href="login-register/register.php">Register</a></li>
+                                    <li><a href="login-register/login.php">Login</a></li>
                                 </ul>
                                 <?php
                                     }else{
                                     ?>
                                         <ul class="flex justify-content-center align-items-center py-2 pt-md-0">
-                                        <li><a href="about.php"><?php echo $_SESSION["user"]["name"];  ?></a></li>
+                                          <li class="dropdown"><a href="#"><?php echo $_SESSION["user"]["name"]; ?></a>
+                                              <ul class="isi-dropdown">
+                                                <li><a href="single-profile.php">Profile</a></li>
+                                                <li><a href="login-register/logout.php">Logout</a></li>
+                                              </ul>
+                                          </li>
                                         </ul>
-
                                     <?php
                                     }
                                 ?>

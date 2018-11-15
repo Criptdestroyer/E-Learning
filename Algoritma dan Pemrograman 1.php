@@ -1,5 +1,7 @@
 <?php
-    include("../config.php");
+    include("config.php");
+    session_start();
+    if(!isset($_SESSION["user"])) header("location: login-register/login.php");
     $id = $_GET['id'];
     $sql = $db->query("select * from course where id_course = $id");
     $value = $sql->fetch(PDO::FETCH_ASSOC);
@@ -18,14 +20,7 @@
                         <header class="entry-header">
                             <h1 class="entry-title"><?php echo $value['title']; ?></h1>
 
-                            <!-- <div class="ratings flex justify-content-center align-items-center">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                                <span>(4 votes)</span>
-                            </div>.ratings -->
+                            
                         </header><!-- .entry-header -->
                     </div><!-- .col -->
                 </div><!-- .row -->
@@ -75,6 +70,10 @@
                             <label class="m-0">Categories</label>
                             <div class="author-name"><a href="#">Alpro</a></div>
                         </div><!-- .course-cats -->
+                        
+                        <?php
+                            
+                        ?>
 
                         <div class="course-students mt-3">
                             <label class="m-0">Passed Lectures</label>
@@ -116,7 +115,7 @@
                                             $sql2 = $db->query("select * from materi where curriculum_id = $idt");
                                             while($materi = $sql2->fetch(PDO::FETCH_ASSOC)){
                                         ?>
-                                        <li class="flex flex-column flex-lg-row align-items-lg-center"><span class="lecture-title"><?php echo $materi['title'] ?></span><span class="lectures-preview"></span><span class="lectures-time text-left text-lg-right"></span></li>
+                                        <li class="flex flex-column flex-lg-row align-items-lg-center"><span class="lecture-title"><a href="<?= $cur['title'].".php?id=".$idt ?>"><?php echo $materi['title'] ?></a></span><span class="lectures-preview"></span><span class="lectures-time text-left text-lg-right"></span></li>
                                             <?php } ?>
                                     </ul>
                                 </div>
